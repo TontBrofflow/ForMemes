@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset='utf-8'>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+  <script src="js/howler.js"></script>
+  <script src="js/anime.min.js"></script>
+  <title>What are you doing in my swamp?</title>
+</head>
+
+<body>
+  <header>
+    <nav class="menu">
+      <ul class="nav_list">
+        <li class="nav_list_item"><a href="index.html">Главная</a></li>
+        <li class="nav_list_item"><a href="index.html" id='loginLink' class="overlayLink" data-action="login-form.html">Войти</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="wrapper">
+    <div class="overlay" style="display: none;">
+      <div class="login-wrapper">
+        <div class="login-content" id="loginTarget">
+          <a class="close" href="index.html">x</a>
+          <h3>Sign in</h3>
+          <form method="post" action="index.html">
+            <label for="username">
+              Username:
+              <input type="text" name="username" id="username" placeholder="Between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{8,20}$" required />
+            </label>
+            <label for="password">
+              Password:
+              <input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+            </label>
+            <button type="submit">Sign in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <section>
+    </section>
+    <div class="ButtonReaddr">
+      <button type="submit" class="GoButton" data-target="https://google.ru/">Go</button>
+    </div>
+    <div class="BillyAnim"> <img src="pictures/billy.jpg" alt="billybanner" width="100%" height="100%"></div>
+  </div>
+  <script>
+
+  $('html, body').css({
+    overflow: 'hidden',
+    height: '100%'
+  });
+
+  var sound = new Howl({
+    src: ['sounds/champ.mp3'],
+    preload:true,
+    autoplay:true,
+    loop:true,
+    volume:0.1,
+  });
+
+  function foo() {
+    $('section').append('<p>'+this.bar+'</p>');
+  }
+  var bar = "global";//    $('section').append('<p>'+this.bar+'</p>');
+  var obj1 = {
+    bar: "obj1",
+    foo: foo
+  };
+  var obj2 = {
+    bar: "obj2"
+  };
+  var obj3={
+    bar:"Ricardo Milos"
+  };
+  foo();
+  obj1.foo();
+  foo.call(obj2);
+  foo.call (obj3);
+
+  $('.GoButton').on('click', function(event) {
+    event.preventDefault();
+    var url = $(this).data('target');
+    window.open (url);
+  });
+
+  anime({
+    targets: '.BillyAnim',
+    translateX: -270,
+    duration:2000,
+    endDelay:1000,
+    direction: 'alternate',
+    loop: true,
+    easing: 'easeInOutSine'
+  });
+
+  $(document).ready(function() {
+    $("#loginLink").click(function( event ){
+      event.preventDefault();
+      $(".overlay").fadeToggle("fast");
+    });
+
+    $(".close").click(function(){
+      $(".overlay").fadeToggle("fast");
+    });
+
+    $(document).keyup(function(e) {
+      if(e.keyCode == 27 && $(".overlay").css("display") != "none" ) {
+        event.preventDefault();
+        $(".overlay").fadeToggle("fast");
+      }
+    });
+  });
+  </script>
+
+  <style media="screen">
+
+  @media screen and (min-width:200px) and (max-width:2000px){
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      outline: none;
+      padding: 0;
+    }
+
+    *:after,
+    *:before {
+      box-sizing: border-box;
+    }
+
+    html{
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-rendering: optimizeLegibility;
+    }
+
+    body{
+      background-color: #f3f3f3;
+      color: rgb(165,165,165);
+      font-family: "Open Sans", Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      width: auto;
+      height: auto;
+      margin:0 auto;
+      padding: 10px;
+      background: url('pictures/city.jpg');
+      background-repeat: no-repeat;
+    }
+
+    .nav_list {
+      margin-left: 45%;
+    }
+
+    .nav_list_item {
+      padding: 20px;
+      display:inline-block;
+    }
+
+    .nav_list_item a {
+      background-color: #2012b8;
+      border-radius: 10px;
+      padding: 10px;
+      color:black;
+    }
+
+    .nav_list_item a:hover {
+      background-color:#3527cf;
+    }
+
+    section{
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 0 auto;
+    }
+
+    input{
+      width: 350px;
+      height: auto;
+    }
+
+    .BillyAnim{
+      margin: 0 auto;
+      margin-top: 25%;
+      margin-left: 90%;
+    }
+  }
+
+  div.overlay {
+    background-color: rgba(0,0,0,.25);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  div.overlay > div.login-wrapper {
+    align-self: center;
+    background-color: rgba(0,0,0,.25);
+    border-radius: 2px;
+    padding: 6px;
+    width: 450px;
+  }
+
+  div.overlay > div.login-wrapper > div.login-content {
+    background-color: rgb(255,255,255);
+    border-radius: 2px;
+    padding: 24px;
+    position: relative;
+  }
+
+  div.overlay > div.login-wrapper > div.login-content > h3 {
+    color: rgb(0,0,0);
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.8em;
+    margin: 0 0 1.25em;
+    padding: 0;
+  }
+
+  a.close {
+    background-color: rgb(204,204,204);
+    border-radius: 50%;
+    color: rgb(255,255,255);
+    display: block;
+    font-family: 'Varela Round', sans-serif;
+    font-size: .8em;
+    padding: .2em .5em;
+    position: absolute;
+    top: 1.25rem;
+    transition: all 400ms ease;
+    right: 1.25rem;
+  }
+
+  a.close:hover {
+    background-color: #1bc5b3;
+    cursor: pointer;
+  }
+
+  form label {
+    color: rgb(0,0,0);
+    display: block;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.25em;
+    margin: .75em 0;
+  }
+
+  form input[type="email"],
+  form input[type="password"],
+  form textarea {
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb( 186, 186, 186 );
+    border-radius: 1px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    display: block;
+    font-size: .65em;
+    margin: 6px 0 12px 0;
+    padding: .8em .55em;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+    transition: all 400ms ease;
+    width: 90%;
+  }
+
+  form input[type="email"]:focus,
+  form input[type="password"]:focus,
+  form textarea:focus,
+  form select:focus {
+    border-color: #4195fc;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
+  }
+
+  form input[type="email"]:invalid:focus,
+  form input[type="password"]:invalid:focus,
+  form textarea:invalid:focus,
+  form select:invalid:focus {
+    border-color: rgb(248,66,66);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
+  }
+  form button {
+    background-color: #50c1e9;
+    border: 1px solid rgba(0,0,0,.1);
+    color: rgb(255,255,255);
+    font-family: 'Varela Round', sans-serif;
+    font-size: .85em;
+    padding: .55em .9em;
+    transition: all 400ms ease;
+  }
+
+  form button:hover {
+    background-color: #1bc5b3;
+    cursor: pointer;
+  }
+</style>
+</body>
+
+</html>
