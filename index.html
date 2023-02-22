@@ -20,7 +20,7 @@
     <nav class="menu">
       <ul class="nav_list">
         <li class="nav_list_item"><a href="index.html">Главная</a></li>
-        <li class="nav_list_item"><a href="index.html" id='loginLink' class="overlayLink" data-action="login-form.html">Войти</a></li>
+        <li class="nav_list_item"><a href="index.html" id='loginLink' class="overlayLink">Войти</a></li>
       </ul>
     </nav>
   </header>
@@ -30,7 +30,7 @@
         <div class="login-content" id="loginTarget">
           <a class="close" href="index.html">x</a>
           <h3>Sign in</h3>
-          <form method="post" action="index.html">
+          <form method="post" action="index0.html">
             <label for="username">
               Username:
               <input type="text" name="username" id="username" placeholder="Between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{8,20}$" required />
@@ -49,7 +49,7 @@
     <div class="ButtonReaddr">
       <button type="submit" class="GoButton" data-target="https://google.ru/">Go</button>
     </div>
-    <div class="BillyAnim"> <img src="pictures/billy.jpg" alt="billybanner" width="100%" height="100%"></div>
+    <div class="BillyAnim"> <img src="pictures/billy.jpg" alt="billybanner" width="10%" height="10%"></div>
   </div>
   <script>
 
@@ -59,7 +59,7 @@
   });
 
   var sound = new Howl({
-    src: ['sounds/champ.mp3'],
+    src: ['sounds/bfg.mp3'],
     preload:true,
     autoplay:true,
     loop:true,
@@ -148,7 +148,6 @@
     }
 
     body{
-      background-color: #f3f3f3;
       color: rgb(165,165,165);
       font-family: "Open Sans", Arial, Helvetica, sans-serif;
       font-weight: 400;
@@ -156,12 +155,15 @@
       height: auto;
       margin:0 auto;
       padding: 10px;
-      background: url('pictures/city.jpg');
+      background: url('pictures/doom_back.jpg');
+      background-size: cover;
       background-repeat: no-repeat;
     }
 
     .nav_list {
-      margin-left: 45%;
+      position: relative;
+      top:0%;
+      left:45%
     }
 
     .nav_list_item {
@@ -170,14 +172,14 @@
     }
 
     .nav_list_item a {
-      background-color: #2012b8;
+      background-color: #f00;
       border-radius: 10px;
       padding: 10px;
-      color:black;
+      color:white;
     }
 
     .nav_list_item a:hover {
-      background-color:#3527cf;
+      background-color:#d40d0d;
     }
 
     section{
@@ -193,9 +195,9 @@
     }
 
     .BillyAnim{
-      margin: 0 auto;
+      position: relative;
+      left:100%;
       margin-top: 25%;
-      margin-left: 90%;
     }
   }
 
@@ -291,6 +293,7 @@
     border-color: rgb(248,66,66);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,66,66);
   }
+
   form button {
     background-color: #50c1e9;
     border: 1px solid rgba(0,0,0,.1);
@@ -305,6 +308,7 @@
     background-color: #1bc5b3;
     cursor: pointer;
   }
+
 </style>
 </body>
 
